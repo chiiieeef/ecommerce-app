@@ -27,7 +27,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
-
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({
   prompt: "consent",
@@ -72,6 +71,8 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
   return await signInWithEmailAndPassword(auth, email, password);
 }
 
-export const signOutUser = async () => await signOut(auth);
+export const signOutUser = async () => {
+  await signOut(auth);
+}
 
 export const onAuthStateChangedListener = (cb) => onAuthStateChanged(auth, cb);

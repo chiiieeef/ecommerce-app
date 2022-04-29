@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./sign-in-form.styles.scss";
 import FormInput from "../form-input/form-input.component";
+import { useNavigate } from "react-router-dom";
 import {
   signInWithGooglePopup,
   createUserDocumentFromAuth,
@@ -15,6 +16,7 @@ const defaultFormFields = {
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
+  const navigate = useNavigate();
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -22,6 +24,7 @@ const SignInForm = () => {
 
   const signInWithGoogle = async () => {
     await signInWithGooglePopup();
+    navigate("/");
   };
 
   const handleSubmit = async (event) => {
@@ -33,7 +36,8 @@ const SignInForm = () => {
         password
       );
       console.log(response);
-      resetFormFields();
+      navigate("/");
+      //resetFormFields();
     } catch (e) {
       switch (e.code) {
         case "auth/wrong-password":
