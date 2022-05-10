@@ -15,7 +15,7 @@ const App = () => {
     <Routes>
     <Route path='/' element={<Navigation />}>
         {currentUser ? (<Route index element={<Home />} />) : (<Route index element={<NoAuthHome />} />)}
-        <Route path='shop' element={<Shop />} />
+        <Route path='shop/*' element={<Shop />} />
         <Route path='auth' element={<Authentication />} />
         <Route path='checkout' element = {<CheckOut />}></Route>
     </Route>
